@@ -1,6 +1,7 @@
 import { Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { DialogAddPayment } from "@/components/Dialogs/DialogAddPayment";
 
 export function Dashboard() {
   return (
@@ -34,7 +35,9 @@ export function Dashboard() {
             <p className="text-sm text-muted-foreground">
               Start adding expenses and income to take control of your finances!
             </p>
-            <Button className="mt-4">Add the first expense</Button>
+            <DialogAddPayment
+              trigger={<Button className="mt-4">Add the first expense</Button>}
+            />
           </div>
         </div>
       </main>
