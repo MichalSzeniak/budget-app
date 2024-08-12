@@ -1,6 +1,5 @@
 import { Home, LineChart, WalletMinimal } from "lucide-react";
-import { Link, matchPath } from "react-router-dom";
-import { cn } from "@/lib/utils";
+import { Link, NavLink } from "react-router-dom";
 import { Button } from "../ui/button";
 import {
   Tooltip,
@@ -10,7 +9,6 @@ import {
 } from "../ui/tooltip";
 
 const Navigation = () => {
-  const match = (link: string) => matchPath(link, location.pathname);
   const data = [
     {
       name: "Dashboard",
@@ -37,15 +35,18 @@ const Navigation = () => {
           {data.map((item) => (
             <Tooltip key={item.name}>
               <TooltipTrigger asChild>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className={cn(match(item.href) && "bg-muted", "rounded-lg ")}
-                  aria-label="Playground"
-                  asChild
-                >
-                  <Link to={item.href}>{item.icon}</Link>
-                </Button>
+                <NavLink to={item.href}>
+                  {({ isActive }) => (
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      aria-label={item.name}
+                      className={isActive ? "bg-muted" : ""}
+                    >
+                      {item.icon}
+                    </Button>
+                  )}
+                </NavLink>
               </TooltipTrigger>
               <TooltipContent side="right" sideOffset={5}>
                 {item.name}
