@@ -21,6 +21,11 @@ import {
 import { DatePicker } from "../ui/DatePicker";
 import { addTransaction } from "@/store/transactionsSlice";
 import { useDispatch } from "react-redux";
+import { formSchema } from "@/validation/transactionFormSchema";
+import {
+  expensesCategoryList,
+  incomeCategoryList,
+} from "@/constants/categories";
 
 interface TransactionFormProps {
   type: "expenses" | "income";
@@ -34,40 +39,6 @@ interface TransactionFormProps {
   onSave: () => void;
 }
 
-const expansesCategoryList = [
-  "Health",
-  "Home",
-  "Leisure",
-  "Education",
-  "Gifts",
-  "Groceries",
-  "Family",
-  "Workout",
-  "Transportation",
-  "Other",
-];
-
-const incomeCategoryList = ["Paycheck", "Gift", "Interest", "Other"];
-
-const formSchema = z.object({
-  amount: z.preprocess(
-    (a) => parseInt(z.string().parse(a), 10),
-    z.number().gte(1, "Enter the value.").positive()
-  ),
-  category: z.string({
-    required_error: "Select a category.",
-  }),
-  comment: z
-    .string()
-    .max(200, {
-      message: "Comment too long.",
-    })
-    .optional(),
-  date: z.date({
-    required_error: "A date is required.",
-  }),
-});
-
 export function TransactionForm({
   type,
   transaction,
@@ -76,23 +47,19 @@ export function TransactionForm({
   const dispatch = useDispatch();
 
   const categoryList =
-    type === "expenses" ? expansesCategoryList : incomeCategoryList;
+    type === "expenses" ? expensesCategoryList : incomeCategoryList;
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-
     const newTransaction = {
       ...values,
       id: transaction ? transaction.id : Date.now(),
       date: values.date.toISOString(),
     };
-
     dispatch(addTransaction(newTransaction));
-
     onSave();
   }
 

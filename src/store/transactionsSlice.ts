@@ -2,10 +2,10 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface Transaction {
   id: number;
-  comment: string;
+  date: string;
   amount: number;
-  date: Date;
   category: string;
+  comment?: string | undefined;
 }
 
 interface TransactionsState {
@@ -27,5 +27,9 @@ const transactionsSlice = createSlice({
 });
 
 export const { addTransaction } = transactionsSlice.actions;
+
+export const selectTransactions = (state: {
+  transactions: TransactionsState;
+}) => state.transactions.transactions;
 
 export default transactionsSlice.reducer;

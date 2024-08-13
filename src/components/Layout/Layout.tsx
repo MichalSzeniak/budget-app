@@ -1,11 +1,13 @@
 import { Outlet } from "react-router-dom";
 import Navigation from "./Navigation";
+import Header from "./Header";
 
 function Layout() {
   return (
-    <div className="grid min-h-screen w-full grid-cols-[70px_1fr] lg:grid-cols-[100px_1fr]">
+    <div className="grid min-h-screen w-full grid-cols-[1fr] sm:grid-cols-[100px_1fr]">
       <Navigation />
       <main>
+        <Header />
         <Outlet />
       </main>
     </div>
