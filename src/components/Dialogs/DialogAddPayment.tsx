@@ -32,20 +32,7 @@ export function DialogAddPayment({ trigger }: DialogProps) {
                 <CardTitle>Expenses</CardTitle>
               </CardHeader>
               <CardContent className="space-y-2">
-                <TransactionForm />
-                {/* <div className="space-y-1">
-                  <Label htmlFor="name">Value</Label>
-                  <div className="relative">
-                    <Input placeholder="0" type="number" />
-                    <span className="absolute right-10 top-1/2 -translate-y-1/2">
-                      PLN
-                    </span>
-                  </div>
-                </div>
-                <div className="space-y-1">
-                  <Label htmlFor="username">Username</Label>
-                  <Input id="username" defaultValue="@peduarte" />
-                </div> */}
+                <TransactionForm type="expenses" />
               </CardContent>
             </Card>
           </TabsContent>
@@ -55,20 +42,7 @@ export function DialogAddPayment({ trigger }: DialogProps) {
                 <CardTitle>Income</CardTitle>
               </CardHeader>
               <CardContent className="space-y-2">
-                <TransactionForm />
-                {/* <div className="space-y-1">
-                  <Label htmlFor="name">Value</Label>
-                  <div className="relative">
-                    <Input placeholder="0" type="number" />
-                    <span className="absolute right-10 top-1/2 -translate-y-1/2">
-                      PLN
-                    </span>
-                  </div>
-                </div>
-                <div className="space-y-1">
-                  <Label htmlFor="username">Username</Label>
-                  <Input id="username" defaultValue="@peduarte" />
-                </div> */}
+                <TransactionForm type="income" />
               </CardContent>
             </Card>
           </TabsContent>
