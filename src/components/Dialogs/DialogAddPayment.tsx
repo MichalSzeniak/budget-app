@@ -28,7 +28,7 @@ export function DialogAddPayment({ trigger }: DialogProps) {
         <DialogHeader>
           <DialogTitle>Add transactions</DialogTitle>
         </DialogHeader>
-        <Tabs defaultValue="Expenses" className="w-[400px]">
+        <Tabs defaultValue="Expenses" className="sm:w-[400px]">
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="Expenses">Expenses</TabsTrigger>
             <TabsTrigger value="Income">Income</TabsTrigger>

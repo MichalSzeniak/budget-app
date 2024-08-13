@@ -1,5 +1,5 @@
 import { Home, LineChart, WalletMinimal } from "lucide-react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Button } from "../ui/button";
 import {
   Tooltip,
@@ -24,7 +24,7 @@ const Navigation = () => {
 
   return (
     <aside className="hidden sm:flex items-center h-full flex-col border-r">
-      <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
+      <div className="flex items-center border-b px-4 h-[60px] lg:px-6">
         <div className="flex items-center font-bold relative w-12">
           <div className="bg-sky-300 absolute w-5 h-5 -left-2 -top-0 rounded" />
           <div className="bg-yellow-100 absolute w-5 h-5 left-3 -bottom-1 rounded" />

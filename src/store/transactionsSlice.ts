@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface Transaction {
+export interface Transaction {
   id: number;
   date: string;
   amount: number;
@@ -8,7 +8,7 @@ interface Transaction {
   comment?: string | undefined;
 }
 
-interface TransactionsState {
+export interface TransactionsState {
   transactions: Transaction[];
 }
 

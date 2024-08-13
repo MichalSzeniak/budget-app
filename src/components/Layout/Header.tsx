@@ -18,7 +18,7 @@ const Header = () => {
   ];
 
   return (
-    <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
+    <header className="flex items-center gap-4 border-b bg-muted/40 px-4 h-[60px] lg:px-6">
       <div className="w-full flex-1">
         <Sheet>
           <SheetTrigger asChild>
@@ -37,6 +37,7 @@ const Header = () => {
               </div>
               {navLinks.map((item) => (
                 <Link
+                  key={item.name}
                   to={item.href}
                   className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
                 >
