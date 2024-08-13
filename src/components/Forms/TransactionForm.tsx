@@ -19,9 +19,19 @@ import {
   SelectValue,
 } from "../ui/select";
 import { DatePicker } from "../ui/DatePicker";
+import { addTransaction } from "@/store/transactionsSlice";
+import { useDispatch } from "react-redux";
 
-interface Props {
+interface TransactionFormProps {
   type: "expenses" | "income";
+  transaction?: {
+    id: number;
+    description: string;
+    amount: number;
+    date: string;
+    comment?: string | undefined;
+  };
+  onSave: () => void;
 }
 
 const expansesCategoryList = [
@@ -40,22 +50,31 @@ const expansesCategoryList = [
 const incomeCategoryList = ["Paycheck", "Gift", "Interest", "Other"];
 
 const formSchema = z.object({
-  value: z.preprocess(
+  amount: z.preprocess(
     (a) => parseInt(z.string().parse(a), 10),
     z.number().gte(1, "Enter the value.").positive()
   ),
   category: z.string({
     required_error: "Select a category.",
   }),
-  comment: z.string().max(200, {
-    message: "Comment too long.",
-  }),
+  comment: z
+    .string()
+    .max(200, {
+      message: "Comment too long.",
+    })
+    .optional(),
   date: z.date({
     required_error: "A date is required.",
   }),
 });
 
-export function TransactionForm({ type }: Props) {
+export function TransactionForm({
+  type,
+  transaction,
+  onSave,
+}: TransactionFormProps) {
+  const dispatch = useDispatch();
+
   const categoryList =
     type === "expenses" ? expansesCategoryList : incomeCategoryList;
 
@@ -65,6 +84,16 @@ export function TransactionForm({ type }: Props) {
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
+
+    const newTransaction = {
+      ...values,
+      id: transaction ? transaction.id : Date.now(),
+      date: values.date.toISOString(),
+    };
+
+    dispatch(addTransaction(newTransaction));
+
+    onSave();
   }
 
   return (
@@ -72,13 +101,19 @@ export function TransactionForm({ type }: Props) {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
         <FormField
           control={form.control}
-          name="value"
+          name="amount"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Value</FormLabel>
+              <FormLabel>Amount</FormLabel>
               <FormControl>
                 <div className="relative">
-                  <Input placeholder="0" type="number" min="0" {...field} />
+                  <Input
+                    placeholder="0"
+                    type="number"
+                    min="0"
+                    {...field}
+                    value={field.value ?? ""}
+                  />
                   <span className="absolute right-10 top-1/2 -translate-y-1/2">
                     PLN
                   </span>
@@ -132,7 +167,11 @@ export function TransactionForm({ type }: Props) {
             <FormItem>
               <FormLabel>Comment</FormLabel>
               <FormControl>
-                <Input placeholder="Comment" {...field} />
+                <Input
+                  placeholder="Comment"
+                  {...field}
+                  value={field.value ?? ""}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>

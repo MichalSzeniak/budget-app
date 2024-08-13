@@ -2,8 +2,16 @@ import { Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { DialogAddPayment } from "@/components/Dialogs/DialogAddPayment";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
 
 export function Dashboard() {
+  const count = useSelector(
+    (state: RootState) => state.transactions.transactions
+  );
+
+  console.log(count);
+
   return (
     <div className="flex flex-col min-h-screen">
       <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">

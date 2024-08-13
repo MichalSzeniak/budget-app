@@ -11,9 +11,9 @@ import {
 import { ControllerRenderProps } from "react-hook-form";
 
 interface MyFormValues {
-  value: number;
+  amount: number;
   category: string;
-  comment: string;
+  comment?: string | undefined;
   date: Date;
 }
 

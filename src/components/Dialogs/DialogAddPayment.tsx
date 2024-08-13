@@ -8,16 +8,23 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { TransactionForm } from "../Forms/TransactionForm";
+import { useState } from "react";
 
 interface DialogProps {
   trigger: React.ReactNode;
 }
 
 export function DialogAddPayment({ trigger }: DialogProps) {
+  const [open, setOpen] = useState(false);
+
+  const onSave = () => {
+    setOpen(false);
+  };
+
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{trigger}</DialogTrigger>
-      <DialogContent className="sm:max-w-[450px]">
+      <DialogContent className="sm:max-w-[450px]" aria-describedby={undefined}>
         <DialogHeader>
           <DialogTitle>Add transactions</DialogTitle>
         </DialogHeader>
@@ -32,7 +39,7 @@ export function DialogAddPayment({ trigger }: DialogProps) {
                 <CardTitle>Expenses</CardTitle>
               </CardHeader>
               <CardContent className="space-y-2">
-                <TransactionForm type="expenses" />
+                <TransactionForm type="expenses" onSave={() => onSave()} />
               </CardContent>
             </Card>
           </TabsContent>
@@ -42,7 +49,7 @@ export function DialogAddPayment({ trigger }: DialogProps) {
                 <CardTitle>Income</CardTitle>
               </CardHeader>
               <CardContent className="space-y-2">
-                <TransactionForm type="income" />
+                <TransactionForm type="income" onSave={() => onSave()} />
               </CardContent>
             </Card>
           </TabsContent>
