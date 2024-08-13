@@ -51,6 +51,9 @@ export function TransactionForm({
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
+    defaultValues: {
+      date: new Date(),
+    },
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {

@@ -17,6 +17,7 @@ import {
 import { Button } from "../ui/button";
 import { TransactionsState } from "@/store/transactionsSlice";
 import dayjs from "dayjs";
+import DialogConfirm from "../Dialogs/DialogConfirm";
 
 const DashboardTable = ({ transactions }: TransactionsState) => {
   return (
@@ -56,8 +57,20 @@ const DashboardTable = ({ transactions }: TransactionsState) => {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
                   <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                  <DropdownMenuItem>Edit</DropdownMenuItem>
-                  <DropdownMenuItem>Delete</DropdownMenuItem>
+                  <DialogConfirm
+                    trigger={
+                      <div className="cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent">
+                        Edit
+                      </div>
+                    }
+                  />
+                  <DialogConfirm
+                    trigger={
+                      <div className="cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent">
+                        Delete
+                      </div>
+                    }
+                  />
                 </DropdownMenuContent>
               </DropdownMenu>
             </TableCell>
