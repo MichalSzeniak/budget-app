@@ -35,6 +35,8 @@ const DashboardTable = ({ transactions }: TransactionsState) => {
     <Table>
       <TableHeader>
         <TableRow>
+          <TableHead>Type</TableHead>
+
           <TableHead>Amount</TableHead>
           <TableHead>Category</TableHead>
           <TableHead className="hidden md:table-cell">Date</TableHead>
@@ -47,6 +49,7 @@ const DashboardTable = ({ transactions }: TransactionsState) => {
       <TableBody>
         {transactions.map((transaction) => (
           <TableRow>
+            <TableCell>{transaction.type}</TableCell>
             <TableCell className="font-medium">
               {transaction.amount} zł
             </TableCell>

@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface Transaction {
   id: number;
+  type: string;
   date: string;
   amount: number;
   category: string;

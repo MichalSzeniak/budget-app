@@ -65,6 +65,7 @@ const TransactionForm = ({
     const newTransaction = {
       ...values,
       id: transaction ? transaction.id : Date.now(),
+      type: type,
       date: values.date.toISOString(),
     };
     if (transaction) {
