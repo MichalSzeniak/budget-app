@@ -22,6 +22,7 @@ import dayjs from "dayjs";
 import DialogConfirm from "../Dialogs/DialogConfirm";
 import { useDispatch } from "react-redux";
 import { DialogAddPayment } from "../Dialogs/DialogAddPayment";
+import { toast } from "../ui/use-toast";
 
 const DashboardTable = ({ transactions }: TransactionsState) => {
   const dispatch = useDispatch();
@@ -47,7 +48,7 @@ const DashboardTable = ({ transactions }: TransactionsState) => {
         {transactions.map((transaction) => (
           <TableRow>
             <TableCell className="font-medium">
-              {transaction.amount} PLN
+              {transaction.amount} zł
             </TableCell>
             <TableCell>{transaction.category}</TableCell>
             <TableCell className="hidden md:table-cell">
@@ -78,7 +79,12 @@ const DashboardTable = ({ transactions }: TransactionsState) => {
                   />
 
                   <DialogConfirm
-                    handler={() => handleDelete(transaction.id)}
+                    handler={() => {
+                      handleDelete(transaction.id);
+                      toast({
+                        title: "Successfully removed expense.",
+                      });
+                    }}
                     trigger={
                       <div className="cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent">
                         Delete

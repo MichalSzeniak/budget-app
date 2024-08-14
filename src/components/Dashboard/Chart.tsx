@@ -138,7 +138,7 @@ const Chart = ({ transactions }: TransactionsState) => {
                           y={(viewBox.cy || 0) + 24}
                           className="fill-muted-foreground"
                         >
-                          PLN
+                          zł
                         </tspan>
                       </text>
                     );

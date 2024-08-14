@@ -30,6 +30,7 @@ import {
   expensesCategoryList,
   incomeCategoryList,
 } from "@/constants/categories";
+import { toast } from "../ui/use-toast";
 
 interface TransactionFormProps {
   type: "expenses" | "income";
@@ -49,6 +50,7 @@ const TransactionForm = ({
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
+
     defaultValues: {
       date: transaction ? new Date(transaction.date) : new Date(),
       amount: transaction?.amount,
@@ -56,6 +58,8 @@ const TransactionForm = ({
       comment: transaction?.comment,
     },
   });
+
+  console.log(form.formState.errors);
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     const newTransaction = {
@@ -65,8 +69,14 @@ const TransactionForm = ({
     };
     if (transaction) {
       dispatch(editTransaction(newTransaction));
+      toast({
+        title: "Successfully edited expense.",
+      });
     } else {
       dispatch(addTransaction(newTransaction));
+      toast({
+        title: "Successfully added expense.",
+      });
     }
     onSave();
   }
@@ -88,10 +98,9 @@ const TransactionForm = ({
                     type="number"
                     min="0"
                     {...field}
-                    value={field.value ?? ""}
                   />
                   <span className="absolute right-10 top-1/2 -translate-y-1/2">
-                    PLN
+                    zł
                   </span>
                 </div>
               </FormControl>

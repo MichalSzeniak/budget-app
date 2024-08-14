@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -29,6 +30,9 @@ const DialogConfirm = ({ trigger, handler }: DialogProps) => {
         </DialogHeader>
 
         <DialogFooter>
+          <DialogClose asChild>
+            <Button variant="secondary">Cancel</Button>
+          </DialogClose>
           <Button type="submit" onClick={handler}>
             Confirm
           </Button>
