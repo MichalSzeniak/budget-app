@@ -19,7 +19,7 @@ import {
   SelectValue,
 } from "../ui/select";
 import { DatePicker } from "../ui/DatePicker";
-import { addTransaction } from "@/store/transactionsSlice";
+import { addTransaction, Transaction } from "@/store/transactionsSlice";
 import { useDispatch } from "react-redux";
 import { formSchema } from "@/validation/transactionFormSchema";
 import {
@@ -29,21 +29,15 @@ import {
 
 interface TransactionFormProps {
   type: "expenses" | "income";
-  transaction?: {
-    id: number;
-    description: string;
-    amount: number;
-    date: string;
-    comment?: string | undefined;
-  };
+  transaction?: Transaction;
   onSave: () => void;
 }
 
-export function TransactionForm({
+const TransactionForm = ({
   type,
   transaction,
   onSave,
-}: TransactionFormProps) {
+}: TransactionFormProps) => {
   const dispatch = useDispatch();
 
   const categoryList =
@@ -152,4 +146,5 @@ export function TransactionForm({
       </form>
     </Form>
   );
-}
+};
+export default TransactionForm;

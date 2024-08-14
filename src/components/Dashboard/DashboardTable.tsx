@@ -10,16 +10,26 @@ import { MoreHorizontal } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { Button } from "../ui/button";
-import { TransactionsState } from "@/store/transactionsSlice";
+import {
+  deleteTransaction,
+  TransactionsState,
+} from "@/store/transactionsSlice";
 import dayjs from "dayjs";
 import DialogConfirm from "../Dialogs/DialogConfirm";
+import { useDispatch } from "react-redux";
+import { DialogAddPayment } from "../Dialogs/DialogAddPayment";
 
 const DashboardTable = ({ transactions }: TransactionsState) => {
+  const dispatch = useDispatch();
+
+  const handleDelete = (id: number) => {
+    dispatch(deleteTransaction(id));
+  };
+
   return (
     <Table>
       <TableHeader>
@@ -57,14 +67,18 @@ const DashboardTable = ({ transactions }: TransactionsState) => {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
                   <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                  <DialogConfirm
+
+                  <DialogAddPayment
+                    transaction={transaction}
                     trigger={
                       <div className="cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent">
                         Edit
                       </div>
                     }
                   />
+
                   <DialogConfirm
+                    handler={() => handleDelete(transaction.id)}
                     trigger={
                       <div className="cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent">
                         Delete

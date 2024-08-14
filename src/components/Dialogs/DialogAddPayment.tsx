@@ -9,12 +9,14 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { TransactionForm } from "../Forms/TransactionForm";
 import { useState } from "react";
+import { Transaction } from "@/store/transactionsSlice";
 
 interface DialogProps {
   trigger: React.ReactNode;
+  transaction?: Transaction;
 }
 
-export function DialogAddPayment({ trigger }: DialogProps) {
+export function DialogAddPayment({ trigger, transaction }: DialogProps) {
   const [open, setOpen] = useState(false);
 
   const onSave = () => {
@@ -39,7 +41,11 @@ export function DialogAddPayment({ trigger }: DialogProps) {
                 <CardTitle>Expenses</CardTitle>
               </CardHeader>
               <CardContent className="space-y-2">
-                <TransactionForm type="expenses" onSave={() => onSave()} />
+                <TransactionForm
+                  transaction={transaction}
+                  type="expenses"
+                  onSave={() => onSave()}
+                />
               </CardContent>
             </Card>
           </TabsContent>
