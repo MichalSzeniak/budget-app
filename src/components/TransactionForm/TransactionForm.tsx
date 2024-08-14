@@ -51,13 +51,15 @@ const TransactionForm = ({
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
 
-    defaultValues: {
+    values: transaction && {
       date: transaction ? new Date(transaction.date) : new Date(),
       amount: transaction?.amount,
       category: transaction?.category,
       comment: transaction?.comment,
     },
   });
+
+  console.log(form.getValues());
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     const newTransaction = {
