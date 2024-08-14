@@ -18,7 +18,7 @@ interface DialogProps {
 
 export function DialogAddPayment({ trigger, transaction }: DialogProps) {
   const [open, setOpen] = useState(false);
-  const type = transaction ? transaction.type : "expenses";
+  const type = transaction ? transaction.type : "expense";
 
   const onSave = () => {
     setOpen(false);
@@ -33,18 +33,18 @@ export function DialogAddPayment({ trigger, transaction }: DialogProps) {
         </DialogHeader>
         <Tabs defaultValue={type} className="sm:w-[400px]">
           <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="expenses">Expenses</TabsTrigger>
+            <TabsTrigger value="expense">Expense</TabsTrigger>
             <TabsTrigger value="income">Income</TabsTrigger>
           </TabsList>
-          <TabsContent value="expenses">
+          <TabsContent value="expense">
             <Card>
               <CardHeader>
-                <CardTitle>Expenses</CardTitle>
+                <CardTitle>Expense</CardTitle>
               </CardHeader>
               <CardContent className="space-y-2">
                 <TransactionForm
                   transaction={transaction}
-                  type="expenses"
+                  type="expense"
                   onSave={() => onSave()}
                 />
               </CardContent>

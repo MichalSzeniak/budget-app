@@ -11,43 +11,43 @@ import { Transaction, TransactionsState } from "@/store/transactionsSlice";
 const chartConfig = {
   health: {
     label: "Health",
-    color: "hsl(var(--chart-health))", // Azure Blue
+    color: "hsl(var(--chart-health))",
   },
   home: {
     label: "Home",
-    color: "hsl(var(--chart-home))", // Greenish
+    color: "hsl(var(--chart-home))",
   },
   leisure: {
     label: "Leisure",
-    color: "hsl(var(--chart-leisure))", // Violet
+    color: "hsl(var(--chart-leisure))",
   },
   education: {
     label: "Education",
-    color: "hsl(var(--chart-education))", // Blueish
+    color: "hsl(var(--chart-education))",
   },
   gifts: {
     label: "Gifts",
-    color: "hsl(var(--chart-gifts))", // Pinkish
+    color: "hsl(var(--chart-gifts))",
   },
   groceries: {
     label: "Groceries",
-    color: "hsl(var(--chart-groceries))", // Green
+    color: "hsl(var(--chart-groceries))",
   },
   family: {
     label: "Family",
-    color: "hsl(var(--chart-family))", // Orange
+    color: "hsl(var(--chart-family))",
   },
   workout: {
     label: "Workout",
-    color: "hsl(var(--chart-workout))", // Red
+    color: "hsl(var(--chart-workout))",
   },
   transportation: {
     label: "Transportation",
-    color: "hsl(var(--chart-transportation))", // Sky Blue
+    color: "hsl(var(--chart-transportation))",
   },
   other: {
     label: "Other",
-    color: "hsl(var(--chart-other))", // Gray
+    color: "hsl(var(--chart-other))",
   },
 } satisfies ChartConfig;
 

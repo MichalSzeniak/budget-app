@@ -3,7 +3,7 @@ import { Button } from "../ui/button";
 
 const EmptyBudget = () => {
   return (
-    <div className="flex flex-col items-center gap-1 text-center">
+    <div className="flex justify-center h-full flex-col items-center gap-1 text-center">
       <h3 className="text-2xl font-bold tracking-tight">
         Your budget is still empty.
       </h3>

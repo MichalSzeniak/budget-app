@@ -27,13 +27,13 @@ import {
 import { useDispatch } from "react-redux";
 import { formSchema } from "@/validation/transactionFormSchema";
 import {
-  expensesCategoryList,
+  expenseCategoryList,
   incomeCategoryList,
 } from "@/constants/categories";
 import { toast } from "../ui/use-toast";
 
 interface TransactionFormProps {
-  type: "expenses" | "income";
+  type: "expense" | "income";
   transaction?: Transaction;
   onSave: () => void;
 }
@@ -46,7 +46,7 @@ const TransactionForm = ({
   const dispatch = useDispatch();
 
   const categoryList =
-    type === "expenses" ? expensesCategoryList : incomeCategoryList;
+    type === "expense" ? expenseCategoryList : incomeCategoryList;
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -58,8 +58,6 @@ const TransactionForm = ({
       comment: transaction?.comment,
     },
   });
-
-  console.log(form.formState.errors);
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     const newTransaction = {
@@ -99,6 +97,7 @@ const TransactionForm = ({
                     type="number"
                     min="0"
                     {...field}
+                    value={field.value ?? ""}
                   />
                   <span className="absolute right-10 top-1/2 -translate-y-1/2">
                     zł

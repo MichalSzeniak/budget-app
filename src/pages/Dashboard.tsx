@@ -1,12 +1,11 @@
 import { selectTransactions } from "@/store/transactionsSlice";
 import { useSelector } from "react-redux";
 import EmptyBudget from "@/components/Dashboard/EmptyBudget";
-import DashboardTable from "@/components/Dashboard/DashboardTable";
-import Chart from "@/components/Dashboard/Chart";
 import { DialogAddPayment } from "@/components/Dialogs/DialogAddPayment";
 import { Button } from "@/components/ui/button";
+import DashboardDetails from "@/components/Dashboard/DashboardDetails";
 
-export function Dashboard() {
+const Dashboard = () => {
   const transactions = useSelector(selectTransactions);
 
   return (
@@ -18,17 +17,11 @@ export function Dashboard() {
             trigger={<Button className="mt-4">Add expense</Button>}
           />
         </div>
-        <div className="flex flex-col flex-1 items-center justify-center rounded-lg border border-dashed shadow-sm p-10 sm:p2">
-          {transactions.length ? (
-            <>
-              <Chart transactions={transactions} />
-              <DashboardTable transactions={transactions} />
-            </>
-          ) : (
-            <EmptyBudget />
-          )}
+        <div className="flex flex-col flex-1 items-center rounded-lg border border-dashed shadow-sm p-10 pb-5 sm:p2">
+          {transactions.length ? <DashboardDetails /> : <EmptyBudget />}
         </div>
       </main>
     </div>
   );
-}
+};
+export default Dashboard;

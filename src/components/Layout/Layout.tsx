@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import Navigation from "./Navigation";
 import Header from "./Header";
 
-function Layout() {
+const Layout = () => {
   return (
     <div className="grid min-h-screen w-full grid-cols-[1fr] sm:grid-cols-[100px_1fr]">
       <Navigation />
@@ -12,6 +12,5 @@ function Layout() {
       </main>
     </div>
   );
-}
-
+};
 export default Layout;

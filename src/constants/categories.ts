@@ -1,4 +1,4 @@
-export const expensesCategoryList = [
+export const expenseCategoryList = [
   "Health",
   "Home",
   "Leisure",
