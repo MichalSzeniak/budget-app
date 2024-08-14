@@ -19,7 +19,11 @@ import {
   SelectValue,
 } from "../ui/select";
 import { DatePicker } from "../ui/DatePicker";
-import { addTransaction, Transaction } from "@/store/transactionsSlice";
+import {
+  addTransaction,
+  editTransaction,
+  Transaction,
+} from "@/store/transactionsSlice";
 import { useDispatch } from "react-redux";
 import { formSchema } from "@/validation/transactionFormSchema";
 import {
@@ -46,7 +50,10 @@ const TransactionForm = ({
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      date: new Date(),
+      date: transaction ? new Date(transaction.date) : new Date(),
+      amount: transaction?.amount,
+      category: transaction?.category,
+      comment: transaction?.comment,
     },
   });
 
@@ -56,7 +63,11 @@ const TransactionForm = ({
       id: transaction ? transaction.id : Date.now(),
       date: values.date.toISOString(),
     };
-    dispatch(addTransaction(newTransaction));
+    if (transaction) {
+      dispatch(editTransaction(newTransaction));
+    } else {
+      dispatch(addTransaction(newTransaction));
+    }
     onSave();
   }
 
@@ -73,6 +84,7 @@ const TransactionForm = ({
                 <div className="relative">
                   <Input
                     placeholder="0"
+                    step="0.01"
                     type="number"
                     min="0"
                     {...field}
@@ -93,7 +105,7 @@ const TransactionForm = ({
           render={({ field }) => (
             <FormItem>
               <FormLabel>Category</FormLabel>
-              <Select onValueChange={field.onChange}>
+              <Select onValueChange={field.onChange} value={field.value}>
                 <FormControl>
                   <SelectTrigger>
                     <SelectValue placeholder="Select a category" />

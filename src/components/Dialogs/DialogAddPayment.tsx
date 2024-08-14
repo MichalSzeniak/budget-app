@@ -7,9 +7,9 @@ import {
 } from "@/components/ui/dialog";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { TransactionForm } from "../Forms/TransactionForm";
 import { useState } from "react";
 import { Transaction } from "@/store/transactionsSlice";
+import TransactionForm from "../Forms/TransactionForm";
 
 interface DialogProps {
   trigger: React.ReactNode;
