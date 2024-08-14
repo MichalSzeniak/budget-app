@@ -37,7 +37,7 @@ const DashboardTable = ({ transactions }: TransactionsState) => {
         <TableRow>
           <TableHead>Type</TableHead>
           <TableHead>Amount</TableHead>
-          <TableHead>Category</TableHead>
+          <TableHead className="hidden md:table-cell">Category</TableHead>
           <TableHead className="hidden md:table-cell">Date</TableHead>
           <TableHead className="hidden md:table-cell">Comment</TableHead>
           <TableHead>
@@ -52,7 +52,9 @@ const DashboardTable = ({ transactions }: TransactionsState) => {
             <TableCell className="font-medium">
               {transaction.amount} zł
             </TableCell>
-            <TableCell>{transaction.category}</TableCell>
+            <TableCell className="hidden md:table-cell">
+              {transaction.category}
+            </TableCell>
             <TableCell className="hidden md:table-cell">
               {dayjs(transaction.date).format("DD-MM-YYYY")}
             </TableCell>

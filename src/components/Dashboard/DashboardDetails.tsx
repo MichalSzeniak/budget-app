@@ -4,6 +4,7 @@ import DashboardTable from "./DashboardTable";
 import FilterDropdown from "./FilterDropdown";
 import { selectTransactions } from "@/store/transactionsSlice";
 import { useSelector } from "react-redux";
+import { cn } from "@/lib/utils";
 
 const DashboardDetails = () => {
   const transactions = useSelector(selectTransactions);
@@ -41,7 +42,12 @@ const DashboardDetails = () => {
 
   return (
     <div className="relative w-full">
-      <span className="absolute top-2 left-2  font-bold">
+      <span
+        className={cn(
+          balance > 0 ? "text-green-500" : "text-red-400",
+          "absolute top-2 left-2  font-bold"
+        )}
+      >
         Balance: {balance} zł
       </span>
       <div className="absolute top-2 right-2">
