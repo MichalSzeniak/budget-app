@@ -86,7 +86,7 @@ const DashboardTable = ({ transactions }: TransactionsState) => {
                     handler={() => {
                       handleDelete(transaction.id);
                       toast({
-                        title: "Successfully removed expense.",
+                        title: `Successfully removed ${transaction.type}.`,
                       });
                     }}
                     trigger={

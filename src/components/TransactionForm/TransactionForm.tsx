@@ -69,12 +69,12 @@ const TransactionForm = ({
     if (transaction) {
       dispatch(editTransaction(newTransaction));
       toast({
-        title: "Successfully edited expense.",
+        title: `Successfully edited ${transaction.type}.`,
       });
     } else {
       dispatch(addTransaction(newTransaction));
       toast({
-        title: "Successfully added expense.",
+        title: `Successfully added ${type}.`,
       });
     }
     onSave();
