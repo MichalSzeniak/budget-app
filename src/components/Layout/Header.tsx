@@ -1,6 +1,13 @@
 import { Home, LineChart, PanelLeft, WalletMinimal } from "lucide-react";
 import { Button } from "../ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "../ui/sheet";
 import { Link } from "react-router-dom";
 
 const Header = () => {
@@ -29,12 +36,18 @@ const Header = () => {
           </SheetTrigger>
           <SheetContent side="left" className="sm:max-w-xs">
             <nav className="grid gap-6 text-lg font-medium">
-              <div className="flex items-center font-bold relative w-12">
-                <div className="bg-sky-300 absolute w-5 h-5 -left-2 -top-0 rounded" />
-                <div className="bg-yellow-100 absolute w-5 h-5 left-3 -bottom-1 rounded" />
-                <WalletMinimal className="h-6 w-6 z-10" />
-                <span className="z-10">HB</span>
-              </div>
+              <SheetHeader>
+                <SheetTitle>
+                  <div className="flex items-center font-bold relative w-12">
+                    <div className="bg-sky-300 absolute w-5 h-5 -left-2 -top-0 rounded" />
+                    <div className="bg-yellow-100 absolute w-5 h-5 left-3 -bottom-1 rounded" />
+                    <WalletMinimal className="h-6 w-6 z-10" />
+                    <span className="z-10">HB</span>
+                  </div>
+                </SheetTitle>
+                <SheetDescription aria-hidden></SheetDescription>
+              </SheetHeader>
+
               {navLinks.map((item) => (
                 <Link
                   key={item.name}
