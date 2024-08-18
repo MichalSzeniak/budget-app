@@ -9,16 +9,20 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useState } from "react";
 import { Transaction } from "@/store/transactionsSlice";
-import TransactionForm from "../TransactionForm/TransactionForm";
+import TransactionForm from "../transactionForm/TransactionForm";
 
 interface DialogProps {
   trigger: React.ReactNode;
   transaction?: Transaction;
+  type?: string;
 }
 
-export function DialogAddPayment({ trigger, transaction }: DialogProps) {
+const DialogAddPayment = ({
+  trigger,
+  transaction,
+  type = "expense",
+}: DialogProps) => {
   const [open, setOpen] = useState(false);
-  const type = transaction ? transaction.type : "expense";
 
   const onSave = () => {
     setOpen(false);
@@ -72,4 +76,5 @@ export function DialogAddPayment({ trigger, transaction }: DialogProps) {
       </DialogContent>
     </Dialog>
   );
-}
+};
+export default DialogAddPayment;

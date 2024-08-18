@@ -13,10 +13,11 @@ import { ListFilter } from "lucide-react";
 import { useState, useMemo } from "react";
 
 interface FilterDropdownProps {
+  type: "expense" | "income";
   onFilterChange: (categories: string[]) => void;
 }
 
-const FilterDropdown = ({ onFilterChange }: FilterDropdownProps) => {
+const FilterDropdown = ({ type, onFilterChange }: FilterDropdownProps) => {
   const transactions = useSelector(selectTransactions);
 
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
@@ -25,12 +26,10 @@ const FilterDropdown = ({ onFilterChange }: FilterDropdownProps) => {
     () =>
       Array.from(
         new Set(
-          transactions
-            .filter((tx) => tx.type === "expense")
-            .map((tx) => tx.category)
+          transactions.filter((tx) => tx.type === type).map((tx) => tx.category)
         )
       ),
-    [transactions]
+    [transactions, type]
   );
 
   const handleCategoryChange = (category: string, checked: boolean) => {

@@ -19,10 +19,10 @@ import {
   TransactionsState,
 } from "@/store/transactionsSlice";
 import dayjs from "dayjs";
-import DialogConfirm from "../Dialogs/DialogConfirm";
 import { useDispatch } from "react-redux";
-import { DialogAddPayment } from "../Dialogs/DialogAddPayment";
 import { toast } from "../ui/use-toast";
+import DialogConfirm from "../dialogs/DialogConfirm";
+import DialogAddPayment from "../dialogs/DialogAddPayment";
 
 const DashboardTable = ({ transactions }: TransactionsState) => {
   const dispatch = useDispatch();
@@ -35,9 +35,8 @@ const DashboardTable = ({ transactions }: TransactionsState) => {
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead>Type</TableHead>
           <TableHead>Amount</TableHead>
-          <TableHead className="hidden md:table-cell">Category</TableHead>
+          <TableHead>Category</TableHead>
           <TableHead className="hidden md:table-cell">Date</TableHead>
           <TableHead className="hidden md:table-cell">Comment</TableHead>
           <TableHead>
@@ -48,13 +47,10 @@ const DashboardTable = ({ transactions }: TransactionsState) => {
       <TableBody>
         {transactions.map((transaction) => (
           <TableRow key={transaction.id}>
-            <TableCell>{transaction.type}</TableCell>
             <TableCell className="font-medium">
               {transaction.amount} zł
             </TableCell>
-            <TableCell className="hidden md:table-cell">
-              {transaction.category}
-            </TableCell>
+            <TableCell>{transaction.category}</TableCell>
             <TableCell className="hidden md:table-cell">
               {dayjs(transaction.date).format("DD-MM-YYYY")}
             </TableCell>
@@ -75,6 +71,7 @@ const DashboardTable = ({ transactions }: TransactionsState) => {
 
                   <DialogAddPayment
                     transaction={transaction}
+                    type={transaction.type}
                     trigger={
                       <div className="cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent">
                         Edit

@@ -49,6 +49,18 @@ const chartConfig = {
     label: "Other",
     color: "hsl(var(--chart-other))",
   },
+  paycheck: {
+    label: "Paycheck",
+    color: "hsl(var(--chart-paycheck))",
+  },
+  gift: {
+    label: "Gift",
+    color: "hsl(var(--chart-gift))",
+  },
+  interest: {
+    label: "Interest",
+    color: "hsl(var(--chart-interest))",
+  },
 } satisfies ChartConfig;
 
 interface ChartConfigItem {
@@ -66,7 +78,7 @@ interface ChartDataItem {
   fill: string;
 }
 
-const Chart = ({ transactions }: TransactionsState) => {
+const DashboardChart = ({ transactions }: TransactionsState) => {
   const useChartData = (
     data: Transaction[],
     chartConfig: ChartConfig
@@ -84,9 +96,9 @@ const Chart = ({ transactions }: TransactionsState) => {
       return Object.entries(aggregatedData).map(([category, amount]) => {
         const configItem = chartConfig[category];
         return {
-          category: configItem ? configItem.label : "Other",
+          category: configItem.label,
           amount,
-          fill: configItem ? configItem.color : chartConfig.other.color,
+          fill: configItem.color,
         };
       });
     }, [data, chartConfig]);
@@ -152,4 +164,4 @@ const Chart = ({ transactions }: TransactionsState) => {
     </Card>
   );
 };
-export default Chart;
+export default DashboardChart;
