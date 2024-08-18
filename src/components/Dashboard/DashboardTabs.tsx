@@ -6,9 +6,22 @@ import { Card, CardContent, CardHeader } from "../ui/card";
 import DashboardDetails from "./DashboardDetails";
 import DialogAddPayment from "../dialogs/DialogAddPayment";
 import { Button } from "../ui/button";
+import { DatePickerWithRange } from "../ui/DateRangePicker";
+import { DateRange } from "react-day-picker";
+import { X } from "lucide-react";
 
 const DashboardTabs = () => {
   const [type, setType] = useState("expense");
+  const [date, setDate] = useState<DateRange | undefined>({
+    from: undefined,
+    to: undefined,
+  });
+
+  const resetDate = () =>
+    setDate({
+      from: undefined,
+      to: undefined,
+    });
 
   const transactions = useSelector(selectTransactions);
 
@@ -36,11 +49,16 @@ const DashboardTabs = () => {
           {balance} zł
         </span>
       </p>
-      <div className="flex justify-end mb-5">
-        <DialogAddPayment
-          type={type}
-          trigger={<Button className="mt-4">Add {type}</Button>}
-        />
+      <div className="flex justify-between mb-5">
+        <div className="flex items-center">
+          <DatePickerWithRange date={date} setDate={setDate} />
+          {date?.from ? (
+            <Button variant="ghost" size="sm" onClick={() => resetDate()}>
+              <X />
+            </Button>
+          ) : null}
+        </div>
+        <DialogAddPayment type={type} trigger={<Button>Add {type}</Button>} />
       </div>
       <Tabs
         value={type}
@@ -56,7 +74,7 @@ const DashboardTabs = () => {
           <Card>
             <CardHeader></CardHeader>
             <CardContent className="space-y-2">
-              <DashboardDetails type="expense" />
+              <DashboardDetails type="expense" date={date} />
             </CardContent>
           </Card>
         </TabsContent>
@@ -64,7 +82,7 @@ const DashboardTabs = () => {
           <Card>
             <CardHeader></CardHeader>
             <CardContent className="space-y-2">
-              <DashboardDetails type="income" />
+              <DashboardDetails type="income" date={date} />
             </CardContent>
           </Card>
         </TabsContent>

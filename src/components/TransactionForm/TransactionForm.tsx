@@ -18,7 +18,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
-import { DatePicker } from "../ui/DatePicker";
 import {
   addTransaction,
   editTransaction,
@@ -31,6 +30,7 @@ import {
   incomeCategoryList,
 } from "@/constants/categories";
 import { toast } from "../ui/use-toast";
+import { DatePicker } from "../ui/DatePicker";
 
 interface TransactionFormProps {
   type: "expense" | "income";
