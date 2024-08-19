@@ -46,9 +46,7 @@ const DashboardDetails = ({ type, date }: DashboardDetailsProps) => {
 
   return (
     <div className="relative">
-      <div className="absolute top-2 right-2">
-        <FilterDropdown onFilterChange={setFilteredCategories} type={type} />
-      </div>
+      <FilterDropdown onFilterChange={setFilteredCategories} type={type} />
       <DashboardChart transactions={filteredExpenses} />
       <DashboardTable transactions={filteredExpenses} />
     </div>
