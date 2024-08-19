@@ -1,4 +1,4 @@
-import DialogAddPayment from "../dialogssdsa/DialogAddPayment";
+import DialogAddPayment from "../dialogs/DialogAddPayment";
 import { Button } from "../ui/button";
 
 const EmptyBudget = () => {
