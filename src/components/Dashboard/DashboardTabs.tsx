@@ -6,9 +6,9 @@ import { Card, CardContent, CardHeader } from "../ui/card";
 import DashboardDetails from "./DashboardDetails";
 import DialogAddPayment from "../dialogs/DialogAddPayment";
 import { Button } from "../ui/button";
-import { DatePickerWithRange } from "../ui/DateRangePicker";
 import { DateRange } from "react-day-picker";
 import { X } from "lucide-react";
+import { DatePickerWithRange } from "../ui/dateRangePicker";
 
 const DashboardTabs = () => {
   const [type, setType] = useState("expense");
