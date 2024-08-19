@@ -53,7 +53,12 @@ const DashboardTabs = () => {
         <div className="flex items-center">
           <DatePickerWithRange date={date} setDate={setDate} />
           {date?.from ? (
-            <Button variant="ghost" size="sm" onClick={() => resetDate()}>
+            <Button
+              className="hidden sm:flex"
+              variant="ghost"
+              size="sm"
+              onClick={() => resetDate()}
+            >
               <X />
             </Button>
           ) : null}
