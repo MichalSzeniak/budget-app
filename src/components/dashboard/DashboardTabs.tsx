@@ -6,7 +6,7 @@ import { Button } from "../ui/button";
 import { DateRange } from "react-day-picker";
 import BalanceDisplay from "./BalanceDisplay";
 import DateRangePickerWithReset from "./DateRangePickerWithReset";
-import TabsWithContent from "./TabsWithContent";
+import DashboardTabsWithContent from "./DashboardTabsWithContent";
 
 const DashboardTabs = () => {
   const [type, setType] = useState("expense");
@@ -50,7 +50,7 @@ const DashboardTabs = () => {
         />
         <DialogAddPayment type={type} trigger={<Button>Add {type}</Button>} />
       </div>
-      <TabsWithContent type={type} setType={setType} date={date} />
+      <DashboardTabsWithContent type={type} setType={setType} date={date} />
     </div>
   );
 };
