@@ -1,7 +1,7 @@
 import { selectTransactions } from "@/store/transactionsSlice";
 import { useSelector } from "react-redux";
-import EmptyBudget from "@/components/dashboardTemplate/EmptyBudget";
-import DashboardTabs from "@/components/dashboardTemplate/DashboardTabs";
+import EmptyBudget from "@/components/dashboard/EmptyBudget";
+import DashboardTabs from "@/components/dashboard/DashboardTabs";
 
 const Dashboard = () => {
   const transactions = useSelector(selectTransactions);

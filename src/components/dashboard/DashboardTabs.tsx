@@ -9,6 +9,7 @@ import { Button } from "../ui/button";
 import { DateRange } from "react-day-picker";
 import { X } from "lucide-react";
 import { DatePickerWithRange } from "../ui/dateRangePicker";
+import BalanceDisplay from "./BalanceDisplay";
 
 const DashboardTabs = () => {
   const [type, setType] = useState("expense");
@@ -43,12 +44,7 @@ const DashboardTabs = () => {
 
   return (
     <div className="w-full">
-      <p className="absolute top-0 left-1/2 -translate-x-1/2 font-bold text-xl flex flex-col items-center">
-        <span>Total</span>
-        <span className={balance > 0 ? "text-green-500" : "text-red-400"}>
-          {balance} zł
-        </span>
-      </p>
+      <BalanceDisplay balance={balance} />
       <div className="flex justify-between mb-5 flex-col sm:flex-row">
         <div className="flex items-center">
           <DatePickerWithRange date={date} setDate={setDate} />

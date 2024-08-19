@@ -30,7 +30,7 @@ import {
   incomeCategoryList,
 } from "@/constants/categories";
 import { toast } from "../ui/use-toast";
-import { DatePicker } from "../ui/calendarPicker";
+import { DatePicker } from "../ui/datePicker";
 
 interface TransactionFormProps {
   type: "expense" | "income";
