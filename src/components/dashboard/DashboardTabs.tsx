@@ -7,9 +7,8 @@ import DashboardDetails from "./DashboardDetails";
 import DialogAddPayment from "../dialogs/DialogAddPayment";
 import { Button } from "../ui/button";
 import { DateRange } from "react-day-picker";
-import { X } from "lucide-react";
-import { DatePickerWithRange } from "../ui/dateRangePicker";
 import BalanceDisplay from "./BalanceDisplay";
+import DateRangePickerWithReset from "./DateRangePickerWithReset";
 
 const DashboardTabs = () => {
   const [type, setType] = useState("expense");
@@ -46,19 +45,11 @@ const DashboardTabs = () => {
     <div className="w-full">
       <BalanceDisplay balance={balance} />
       <div className="flex justify-between mb-5 flex-col sm:flex-row">
-        <div className="flex items-center">
-          <DatePickerWithRange date={date} setDate={setDate} />
-          {date?.from ? (
-            <Button
-              className="hidden sm:flex"
-              variant="ghost"
-              size="sm"
-              onClick={() => resetDate()}
-            >
-              <X />
-            </Button>
-          ) : null}
-        </div>
+        <DateRangePickerWithReset
+          date={date}
+          setDate={setDate}
+          resetDate={resetDate}
+        />
         <DialogAddPayment type={type} trigger={<Button>Add {type}</Button>} />
       </div>
       <Tabs
