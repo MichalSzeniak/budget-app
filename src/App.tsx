@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ErrorPage from "./pages/ErrorPage";
 import Dashboard from "./pages/Dashboard";
-import Layout from "./components/Layout/Layout";
+import Layout from "./components/layoutTemplate/Layout";
 
 function App() {
   return (

@@ -21,8 +21,8 @@ import {
 import dayjs from "dayjs";
 import { useDispatch } from "react-redux";
 import { toast } from "../ui/use-toast";
-import DialogConfirm from "../Dialogs/DialogConfirm";
-import DialogAddPayment from "../Dialogs/DialogAddPayment";
+import DialogConfirm from "../dialogssdsa/DialogConfirm";
+import DialogAddPayment from "../dialogssdsa/DialogAddPayment";
 
 const DashboardTable = ({ transactions }: TransactionsState) => {
   const dispatch = useDispatch();

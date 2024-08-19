@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import { Card, CardContent, CardHeader } from "../ui/card";
 import DashboardDetails from "./DashboardDetails";
-import DialogAddPayment from "../Dialogs/DialogAddPayment";
+import DialogAddPayment from "../dialogssdsa/DialogAddPayment";
 import { Button } from "../ui/button";
 import { DateRange } from "react-day-picker";
 import { X } from "lucide-react";
