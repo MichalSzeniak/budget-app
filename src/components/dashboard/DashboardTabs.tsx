@@ -1,14 +1,12 @@
 import { useMemo, useState } from "react";
 import { selectTransactions } from "@/store/transactionsSlice";
 import { useSelector } from "react-redux";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
-import { Card, CardContent, CardHeader } from "../ui/card";
-import DashboardDetails from "./DashboardDetails";
 import DialogAddPayment from "../dialogs/DialogAddPayment";
 import { Button } from "../ui/button";
 import { DateRange } from "react-day-picker";
 import BalanceDisplay from "./BalanceDisplay";
 import DateRangePickerWithReset from "./DateRangePickerWithReset";
+import TabsWithContent from "./TabsWithContent";
 
 const DashboardTabs = () => {
   const [type, setType] = useState("expense");
@@ -52,33 +50,7 @@ const DashboardTabs = () => {
         />
         <DialogAddPayment type={type} trigger={<Button>Add {type}</Button>} />
       </div>
-      <Tabs
-        value={type}
-        onValueChange={setType}
-        defaultValue="expense"
-        className=""
-      >
-        <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="expense">Expanses</TabsTrigger>
-          <TabsTrigger value="income">Incomes</TabsTrigger>
-        </TabsList>
-        <TabsContent value="expense">
-          <Card>
-            <CardHeader></CardHeader>
-            <CardContent className="space-y-2">
-              <DashboardDetails type="expense" date={date} />
-            </CardContent>
-          </Card>
-        </TabsContent>
-        <TabsContent value="income">
-          <Card>
-            <CardHeader></CardHeader>
-            <CardContent className="space-y-2">
-              <DashboardDetails type="income" date={date} />
-            </CardContent>
-          </Card>
-        </TabsContent>
-      </Tabs>
+      <TabsWithContent type={type} setType={setType} date={date} />
     </div>
   );
 };
