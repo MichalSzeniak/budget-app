@@ -49,7 +49,7 @@ const DashboardTabs = () => {
           {balance} zł
         </span>
       </p>
-      <div className="flex justify-between mb-5">
+      <div className="flex justify-between mb-5 flex-col sm:flex-row">
         <div className="flex items-center">
           <DatePickerWithRange date={date} setDate={setDate} />
           {date?.from ? (
