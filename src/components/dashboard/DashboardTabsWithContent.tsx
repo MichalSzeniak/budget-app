@@ -22,7 +22,6 @@ const DashboardTabsWithContent = ({
       </TabsList>
       <TabsContent value="expense">
         <Card>
-          <CardHeader></CardHeader>
           <CardContent className="space-y-2">
             <DashboardDetails type="expense" date={date} />
           </CardContent>
@@ -30,7 +29,6 @@ const DashboardTabsWithContent = ({
       </TabsContent>
       <TabsContent value="income">
         <Card>
-          <CardHeader></CardHeader>
           <CardContent className="space-y-2">
             <DashboardDetails type="income" date={date} />
           </CardContent>
