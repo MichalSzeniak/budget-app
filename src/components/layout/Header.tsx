@@ -8,7 +8,8 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "../ui/sheet";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { cn } from "@/lib/utils";
 
 const Header = () => {
   const navLinks = [
@@ -49,14 +50,21 @@ const Header = () => {
               </SheetHeader>
 
               {navLinks.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-                >
-                  {item.icon}
-                  {item.name}
-                </Link>
+                <NavLink to={item.href}>
+                  {({ isActive }) => (
+                    <Button
+                      variant="ghost"
+                      aria-label={item.name}
+                      className={cn(
+                        "flex justify-start gap-4 px-2.5 text-muted-foreground hover:text-foreground w-full",
+                        isActive ? "text-black bg-muted" : ""
+                      )}
+                    >
+                      {item.icon}
+                      {item.name}
+                    </Button>
+                  )}
+                </NavLink>
               ))}
             </nav>
           </SheetContent>
