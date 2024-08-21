@@ -1,9 +1,16 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import { Card, CardContent } from "../ui/card";
 import { useState } from "react";
+import IncomeExpenseBarChart from "./IncomeExpenseBarChart ";
 
 const AnalysysTabs = () => {
   const [type, setType] = useState("general");
+
+  const data: Array<"income" | "expense" | "general"> = [
+    "general",
+    "income",
+    "expense",
+  ];
 
   return (
     <Tabs
@@ -17,21 +24,15 @@ const AnalysysTabs = () => {
         <TabsTrigger value="income">Incomes</TabsTrigger>
         <TabsTrigger value="expense">Expenses</TabsTrigger>
       </TabsList>
-      <TabsContent value="general">
-        <Card>
-          <CardContent className="space-y-2">General</CardContent>
-        </Card>
-      </TabsContent>
-      <TabsContent value="income">
-        <Card>
-          <CardContent className="space-y-2">Incomes</CardContent>
-        </Card>
-      </TabsContent>
-      <TabsContent value="expense">
-        <Card>
-          <CardContent className="space-y-2">Expenses</CardContent>
-        </Card>
-      </TabsContent>
+      {data.map((type) => (
+        <TabsContent value={type} key={type}>
+          <Card>
+            <CardContent className="space-y-2">
+              <IncomeExpenseBarChart type={type} />
+            </CardContent>
+          </Card>
+        </TabsContent>
+      ))}
     </Tabs>
   );
 };

@@ -45,11 +45,11 @@ const FilterDropdown = ({ type, onFilterChange }: FilterDropdownProps) => {
     <div className="absolute top-2 right-2 z-10">
       <DropdownMenu modal={false}>
         <DropdownMenuTrigger asChild>
-          <Button variant="outline" size="sm" className="h-8 gap-1">
-            <ListFilter className="h-3.5 w-3.5" />
-            <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
+          <Button variant="outline" size="sm" className="h-8 gap-5">
+            <span className="sr-only sm:not-sr-only sm:whitespace-nowrap font-normal text-sm">
               Filter
             </span>
+            <ListFilter className="h-3.5 w-3.5" />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
